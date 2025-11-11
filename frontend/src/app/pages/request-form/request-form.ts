@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 
@@ -22,16 +22,20 @@ export class RequestFormComponent {
 
   constructor(private requestService: RequestService, private router: Router) {}
 
-  onSubmit(): void {
-    console.log("este es el objeto",this.request);
+  onSubmit(form: NgForm): void {
+    if (!form.valid) {
+      alert('Por favor completa todos los campos obligatorios correctamente.');
+      return;
+    }
+
     this.requestService.create(this.request).subscribe({
       next: () => {
-        alert('Request created successfully!');
+        alert('Solicitud creada correctamente');
         this.router.navigate(['/requests']);
       },
       error: (err) => {
         console.error('Error creating request:', err);
-        alert('Error creating request');
+        alert('Error al crear la solicitud. Intenta nuevamente.');
       }
     });
   }

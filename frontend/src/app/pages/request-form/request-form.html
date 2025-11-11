@@ -1,36 +1,49 @@
-<div class="container mt-4">
-  <h2>Crear solicitud</h2>
-  <form (ngSubmit)="onSubmit()" #reqForm="ngForm" class="mt-3">
-    <div class="mb-3">
-      <label class="form-label">Título</label>
-      <input class="form-control" [(ngModel)]="request.title" name="title" required />
-    </div>
+<form (ngSubmit)="onSubmit(reqForm)" #reqForm="ngForm" class="mt-3">
 
-    <div class="mb-3">
-      <label class="form-label">Descripción</label>
-      <textarea class="form-control" [(ngModel)]="request.description" name="description" required></textarea>
+  <div class="mb-3">
+    <label class="form-label">Title</label>
+    <input class="form-control" [(ngModel)]="request.title" name="title" required #title="ngModel" />
+    <div class="text-danger" *ngIf="title.invalid && title.touched">
+      Título es obligatorio
     </div>
+  </div>
 
-    <div class="mb-3">
-      <label class="form-label">Solicitante</label>
-      <input class="form-control" [(ngModel)]="request.requester" name="requester" required />
+  <div class="mb-3">
+    <label class="form-label">Description</label>
+    <textarea class="form-control" [(ngModel)]="request.description" name="description" required #desc="ngModel"></textarea>
+    <div class="text-danger" *ngIf="desc.invalid && desc.touched">
+      Descripción es obligatoria
     </div>
+  </div>
 
-    <div class="mb-3">
-      <label class="form-label">Responsable</label>
-      <input class="form-control" [(ngModel)]="request.approver" name="approver" required />
+  <div class="mb-3">
+    <label class="form-label">Requester</label>
+    <input class="form-control" [(ngModel)]="request.requester" name="requester" required #req="ngModel" />
+    <div class="text-danger" *ngIf="req.invalid && req.touched">
+      Solicitante obligatorio
     </div>
+  </div>
 
-    <div class="mb-3">
-      <label class="form-label">Tipo</label>
-      <select class="form-select" [(ngModel)]="request.type" name="type" required>
-        <option value="">Seleccione...</option>
-        <option value="deployment">Despliegue</option>
-        <option value="access">Acceso</option>
-        <option value="change">Cambio Técnico</option>
-      </select>
+  <div class="mb-3">
+    <label class="form-label">Approver</label>
+    <input class="form-control" [(ngModel)]="request.approver" name="approver" required #app="ngModel" />
+    <div class="text-danger" *ngIf="app.invalid && app.touched">
+      Aprobador obligatorio
     </div>
+  </div>
 
-    <button class="btn btn-primary" [disabled]="!reqForm.valid">Guardar</button>
-  </form>
-</div>
+  <div class="mb-3">
+    <label class="form-label">Type</label>
+    <select class="form-select" [(ngModel)]="request.type" name="type" required #type="ngModel">
+      <option value="">Selecciona tipo</option>
+      <option value="deployment">Despliegue</option>
+      <option value="access">Acceso</option>
+      <option value="change">Cambio</option>
+    </select>
+    <div class="text-danger" *ngIf="type.invalid && type.touched">
+      Tipo obligatorio
+    </div>
+  </div>
+
+  <button class="btn btn-primary" [disabled]="!reqForm.valid">Guardar</button>
+</form>

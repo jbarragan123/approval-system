@@ -13,9 +13,7 @@
           'bg-warning': request.status === 'PENDING',
           'bg-success': request.status === 'APPROVED',
           'bg-danger': request.status === 'REJECTED'
-        }">
-          {{ request.status }}
-        </span>
+        }">{{ request.status }}</span>
       </p>
       <p><strong>Creado:</strong> {{ request.createdAt | date:'short' }}</p>
 
@@ -30,15 +28,19 @@
       <div class="mt-4">
         <button class="btn btn-success me-2"
                 (click)="updateStatus('APPROVED')"
-                [disabled]="request.status !== 'PENDING'">
+                [disabled]="request.status !== 'PENDING' || processing">
           Aprobar
         </button>
         <button class="btn btn-danger me-2"
                 (click)="updateStatus('REJECTED')"
-                [disabled]="request.status !== 'PENDING'">
+                [disabled]="request.status !== 'PENDING' || processing">
           Rechazar
         </button>
         <button class="btn btn-secondary" (click)="goBack()">Volver</button>
+      </div>
+
+      <div *ngIf="processing" class="mt-2 text-primary">
+        Procesando acción, por favor espera...
       </div>
 
       <h4 class="mt-4">Historial de cambios</h4>
@@ -71,4 +73,3 @@
   <div class="spinner-border text-primary" role="status"></div>
   <p class="mt-2">Cargando solicitud...</p>
 </div>
-
