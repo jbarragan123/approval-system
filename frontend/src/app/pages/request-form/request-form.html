@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <h2>Crear solicitud</h2>
+  <form (ngSubmit)="onSubmit()" #reqForm="ngForm" class="mt-3">
+    <div class="mb-3">
+      <label class="form-label">Título</label>
+      <input class="form-control" [(ngModel)]="request.title" name="title" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Descripción</label>
+      <textarea class="form-control" [(ngModel)]="request.description" name="description" required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Solicitante</label>
+      <input class="form-control" [(ngModel)]="request.requester" name="requester" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Responsable</label>
+      <input class="form-control" [(ngModel)]="request.approver" name="approver" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Tipo</label>
+      <select class="form-select" [(ngModel)]="request.type" name="type" required>
+        <option value="">Seleccione...</option>
+        <option value="deployment">Despliegue</option>
+        <option value="access">Acceso</option>
+        <option value="change">Cambio Técnico</option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary" [disabled]="!reqForm.valid">Guardar</button>
+  </form>
+</div>
