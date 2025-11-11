@@ -1,0 +1,15 @@
+# Node modules
+**/node_modules
+
+# Angular/Vite
+frontend/dist
+frontend/.angular
+frontend/.vite
+frontend/.cache
+
+# Backend build
+backend/node_modules
+
+# Environment files
+**/.env
+**/.env.local
