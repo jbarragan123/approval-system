@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../config/db.js";
+import sequelize from "../config/db.js"; 
 
 const Notification = sequelize.define("Notification", {
   id: {
@@ -7,14 +7,22 @@ const Notification = sequelize.define("Notification", {
     defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
   },
-  approver: { type: DataTypes.STRING, allowNull: false },
-  requestId: { type: DataTypes.UUID, allowNull: false },
-  title: DataTypes.STRING,
-  read: { type: DataTypes.BOOLEAN, defaultValue: false },
-  createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
-}, {
-  timestamps: false,
-  tableName: "notifications"
+  recipient: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  message: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  isRead: { 
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  requestId: { 
+    type: DataTypes.UUID,
+    allowNull: true,
+  },
 });
 
 export default Notification;
