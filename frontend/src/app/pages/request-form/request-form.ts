@@ -20,6 +20,17 @@ export class RequestFormComponent {
     type: '',
   };
 
+  approvers = [
+    { username: 'juan.perez', name: 'Juan Pérez' },
+    { username: 'maria.gomez', name: 'María Gómez' },
+    { username: 'carlos.ruiz', name: 'Carlos Ruiz' }
+  ];
+  requesters = [
+    { username: 'carlos.gonzales', name: 'Carlos Gonzales' },
+    { username: 'pedro.smith', name: 'Pedro Smith' },
+    { username: 'tatiana.parra', name: 'Tatiana Parra' }
+  ];
+
   constructor(private requestService: RequestService, private router: Router) {}
 
   onSubmit(form: NgForm): void {

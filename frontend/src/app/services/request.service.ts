@@ -27,4 +27,10 @@ export class RequestService {
   getHistory(id: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/${id}/history`);
   }
+
+  getNotifications(user: string) {
+    return this.http.get<any[]>(`${this.apiUrl.replace('/requests', '')}/notifications/${user}`);
+  }
+
+
 }

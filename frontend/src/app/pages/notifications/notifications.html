@@ -1,0 +1,17 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Notificaciones</h3>
+    <button class="btn btn-secondary" (click)="goBack()">Volver</button>
+  </div>
+
+  <div *ngIf="notifications.length === 0" class="text-muted mt-3">
+    No tienes notificaciones nuevas.
+  </div>
+
+  <ul class="list-group mt-3" *ngIf="notifications.length > 0">
+    <li *ngFor="let n of notifications" class="list-group-item d-flex justify-content-between align-items-center">
+      {{ n.message }}
+      <small class="text-secondary">{{ n.createdAt | date:'short' }}</small>
+    </li>
+  </ul>
+</div>

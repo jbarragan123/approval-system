@@ -18,7 +18,10 @@
 
   <div class="mb-3">
     <label class="form-label">Requester</label>
-    <input class="form-control" [(ngModel)]="request.requester" name="requester" required #req="ngModel" />
+    <select class="form-select" [(ngModel)]="request.requester" name="requester" required #req="ngModel">
+      <option value="" disabled selected>Selecciona solicitante</option>
+      <option *ngFor="let user of requesters" [value]="user.username">{{ user.name }}</option>
+    </select>
     <div class="text-danger" *ngIf="req.invalid && req.touched">
       Solicitante obligatorio
     </div>
@@ -26,7 +29,10 @@
 
   <div class="mb-3">
     <label class="form-label">Approver</label>
-    <input class="form-control" [(ngModel)]="request.approver" name="approver" required #app="ngModel" />
+    <select class="form-select" [(ngModel)]="request.approver" name="approver" required #app="ngModel">
+      <option value="" disabled selected>Selecciona aprobador</option>
+      <option *ngFor="let user of approvers" [value]="user.username">{{ user.name }}</option>    
+    </select>
     <div class="text-danger" *ngIf="app.invalid && app.touched">
       Aprobador obligatorio
     </div>
