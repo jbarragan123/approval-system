@@ -6,7 +6,7 @@ import Request from '../src/models/request.model.js';
 import RequestHistory from '../src/models/requestHistory.model.js';
 import Notification from '../src/models/notification.model.js';
 
-dotenv.config();
+dotenv.config({ path: '/app/.env' });  
 
 const seed = async () => {
   console.log('Iniciando seeder...');
@@ -14,6 +14,9 @@ const seed = async () => {
   try {
     await sequelize.authenticate();
     console.log('Conexión a MySQL exitosa');
+
+    await sequelize.sync({ force: true });
+    console.log('Tablas sincronizadas correctamente')
 
     // LIMPIEZA CORRECTA
     console.log('Eliminando datos antiguos...');

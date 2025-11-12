@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/app.js",
-    "seed": "node seeders/01-initial-data.js"
+    "seed": "node seeders/01-initial-data.js",
+    "start": "node src/app.js"
   },
   "keywords": [],
   "author": "",
